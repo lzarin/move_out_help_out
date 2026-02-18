@@ -10,7 +10,7 @@ export default async function CoordinatorLayout({
   return (
     <>
       <DashboardHeader
-        title="Coordinator dashboard"
+        title="Volunteer dashboard"
         description="Manage logistics, schedules, and inventory across donors and nonprofits"
       />
       <div className="p-4 lg:p-6">{children}</div>

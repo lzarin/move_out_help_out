@@ -94,7 +94,7 @@ model InventoryItem {
   quantity    Int             @default(1)
   unit        String          @default("item")
   status      String        @default("LISTED") // LISTED | CLAIMED | PICKED_UP | DELIVERED | CANCELLED
-  imageUrl    String?
+  imageUrls   String?       // JSON array of image URL strings
   createdAt   DateTime      @default(now())
   updatedAt   DateTime      @updatedAt
   listedUntil DateTime?

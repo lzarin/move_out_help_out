@@ -11,8 +11,8 @@ export const ROLES: Record<Role, { label: string; description: string }> = {
     description: "Organization serving families in crisis",
   },
   COORDINATOR: {
-    label: "Coordinator",
-    description: "Manages logistics and matching",
+    label: "Volunteer",
+    description: "Coordinates donors and nonprofits; manages pickup times and locations",
   },
 };
 

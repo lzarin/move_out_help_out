@@ -33,5 +33,8 @@ Thumbs.db
 prisma/dev.db
 prisma/dev.db-journal
 
+# Uploaded images (dev)
+public/uploads
+
 # Vercel
 .vercel

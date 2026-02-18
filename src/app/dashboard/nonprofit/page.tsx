@@ -65,7 +65,7 @@ export default async function NonprofitDashboardPage() {
         <h2 className="font-semibold text-teal-900">How it works</h2>
         <p className="mt-2 text-sm text-teal-600">
           Browse items donated by campuses and students. Claim what your clients need,
-          then coordinate pickups once a coordinator has assigned you to a donor’s
+          then coordinate pickups once a volunteer has assigned you to a donor’s
           pickup window.
         </p>
         <Link href="/dashboard/nonprofit/available" className="mt-4 inline-block btn-primary">

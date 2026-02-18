@@ -10,15 +10,15 @@ const FAQ_ITEMS = [
   },
   {
     q: "How do nonprofits get items?",
-    a: "Nonprofits sign in, browse available inventory from donors in their area, and claim what they need. A coordinator matches claimed items with pickup windows and schedules the collection. You get a clear pickup time and donor details.",
+    a: "Nonprofits sign in, browse available inventory from donors in their area, and claim what they need. A volunteer then matches claimed items with pickup windows and sets the time and location. You get a clear pickup time and donor details.",
   },
   {
-    q: "What role do coordinators play?",
-    a: "Coordinators see all donors and nonprofits on the platform. They assign nonprofits to donor pickup windows, track status (scheduled, in progress, completed), and keep logistics running smoothly so donations reach families quickly.",
+    q: "What do volunteers do?",
+    a: "Volunteers coordinate donors and nonprofits on the platform. They assign nonprofits to donor pickup windows, set pickup times and locations, and track status (scheduled, in progress, completed) so donations reach families quickly.",
   },
   {
     q: "Is there a cost to use Move Out Help Out?",
-    a: "No. The platform is free for donors, nonprofits, and coordinators. Our goal is to redirect move-out surplus to people who need it—no fees, no barriers.",
+    a: "No. The platform is free for donors, nonprofits, and volunteers. Our goal is to redirect move-out surplus to people who need it—no fees, no barriers.",
   },
   {
     q: "What kinds of items can be donated?",

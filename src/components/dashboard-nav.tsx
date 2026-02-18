@@ -28,7 +28,7 @@ const NONPROFIT_LINKS = [
   { href: "/dashboard/nonprofit/pickups", label: "Pickups", icon: Truck },
 ];
 
-const COORDINATOR_LINKS = [
+const VOLUNTEER_LINKS = [
   { href: "/dashboard/coordinator", label: "Overview", icon: LayoutDashboard },
   { href: "/dashboard/coordinator/logistics", label: "Logistics", icon: Truck },
   { href: "/dashboard/coordinator/schedule", label: "Schedule", icon: Calendar },
@@ -42,7 +42,7 @@ function navForRole(role: Role) {
     case "NONPROFIT":
       return NONPROFIT_LINKS;
     case "COORDINATOR":
-      return COORDINATOR_LINKS;
+      return VOLUNTEER_LINKS;
     default:
       return DONOR_LINKS;
   }

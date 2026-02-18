@@ -11,6 +11,7 @@ const createSchema = z.object({
   category: z.enum(INVENTORY_CATEGORIES as unknown as [string, ...string[]]),
   quantity: z.number().int().min(1).max(1000),
   unit: z.string().max(20).optional(),
+  imageUrls: z.array(z.string().min(1).max(500)).max(10).optional(),
 });
 
 export async function GET(request: Request) {
@@ -36,7 +37,11 @@ export async function GET(request: Request) {
     include: { donor: { select: { name: true, slug: true } } },
     orderBy: { createdAt: "desc" },
   });
-  return NextResponse.json(items);
+  const serialized = items.map((item) => ({
+    ...item,
+    imageUrls: item.imageUrls ? (JSON.parse(item.imageUrls) as string[]) : null,
+  }));
+  return NextResponse.json(serialized);
 }
 
 export async function POST(request: Request) {
@@ -67,6 +72,9 @@ export async function POST(request: Request) {
       category: parsed.data.category,
       quantity: parsed.data.quantity,
       unit: parsed.data.unit ?? "item",
+      imageUrls: parsed.data.imageUrls?.length
+      ? JSON.stringify(parsed.data.imageUrls)
+      : undefined,
     },
     include: { donor: { select: { name: true } } },
   });

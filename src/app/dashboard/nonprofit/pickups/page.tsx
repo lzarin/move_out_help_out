@@ -25,7 +25,7 @@ export default async function NonprofitPickupsPage() {
         <div className="card text-center text-teal-600">
           <p>No pickups assigned yet.</p>
           <p className="mt-1 text-sm">
-            A coordinator will assign you to a donor’s pickup window once you’ve claimed items.
+            A volunteer will assign you to a donor’s pickup window once you’ve claimed items.
           </p>
         </div>
       ) : (

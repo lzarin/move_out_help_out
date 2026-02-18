@@ -1,33 +1,15 @@
 import Link from "next/link";
 import { Package, Heart, Truck } from "lucide-react";
+import { HomeHeader } from "@/components/home-header";
+import { HeroCta } from "@/components/hero-cta";
+import { HomeFooter } from "@/components/home-footer";
 import { ImpactStats } from "@/components/impact-stats";
 import { FAQSection } from "@/components/faq-section";
 
 export default function HomePage() {
   return (
     <div className="min-h-screen">
-      {/* Header: one Sign in, one Get started */}
-      <header className="border-b border-teal-200/70 bg-white/90 backdrop-blur-md shadow-sm shadow-teal-950/5">
-        <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4">
-          <Link href="/" className="flex items-center gap-2.5 font-bold text-teal-900 text-lg">
-            <span className="rounded-xl bg-teal-600 p-2 text-white shadow-md shadow-teal-900/20">
-              <Package className="h-5 w-5" />
-            </span>
-            Move Out Help Out
-          </Link>
-          <nav className="flex items-center gap-4">
-            <Link
-              href="/login"
-              className="text-sm font-semibold text-teal-700 hover:text-teal-900 transition"
-            >
-              Sign in
-            </Link>
-            <Link href="/login" className="btn-primary text-base px-5">
-              Get started
-            </Link>
-          </nav>
-        </div>
-      </header>
+      <HomeHeader />
 
       <main>
         {/* Block 1 — Hero (off-white): strong CTA above the fold */}
@@ -42,14 +24,7 @@ export default function HomePage() {
               families in crisis. Schedule pickups, manage inventory, and
               coordinate logistics—all in one place.
             </p>
-            <div className="mt-10">
-              <Link
-                href="/login"
-                className="inline-block rounded-xl bg-teal-600 px-8 py-4 text-lg font-semibold text-white shadow-lg shadow-teal-900/25 transition hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2"
-              >
-                Get started
-              </Link>
-            </div>
+            <HeroCta />
           </div>
         </section>
 
@@ -93,15 +68,15 @@ export default function HomePage() {
                 <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-coral-100 text-coral-600">
                   <Truck className="h-6 w-6" />
                 </div>
-                <h3 className="mt-4 text-lg font-bold text-teal-900">Coordinators</h3>
+                <h3 className="mt-4 text-lg font-bold text-teal-900">Volunteers</h3>
                 <p className="mt-2 text-sm text-teal-700 leading-relaxed">
-                  Volunteers and staff match donors with nonprofits, assign
-                  pickups to time windows, and track status so every donation
-                  gets from campus to families smoothly.
+                  Volunteers coordinate donors and nonprofits: they match claims to
+                  pickup windows, set times and locations, and track pickups so
+                  donations get from campus to families smoothly.
                 </p>
                 <p className="mt-3 text-xs font-medium text-teal-600">
                   <Link href="/login?role=COORDINATOR" className="underline hover:text-teal-800">
-                    Sign in as coordinator
+                    Sign in as volunteer
                   </Link>
                 </p>
               </div>
@@ -132,20 +107,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* Block 5 — Minimal footer: one sign-in link, no big button */}
-        <footer className="border-t border-teal-200/80 bg-white py-10">
-          <div className="mx-auto max-w-6xl px-4 text-center">
-            <p className="text-sm font-medium text-teal-600">
-              Already have an account?{" "}
-              <Link href="/login" className="font-semibold text-teal-700 underline hover:text-teal-900">
-                Sign in
-              </Link>
-            </p>
-            <p className="mt-2 text-sm text-teal-500">
-              Move Out Help Out — connecting campus surplus to families in need.
-            </p>
-          </div>
-        </footer>
+        <HomeFooter />
       </main>
     </div>
   );

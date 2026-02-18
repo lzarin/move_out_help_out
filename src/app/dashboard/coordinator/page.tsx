@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Truck, Calendar, ClipboardList, ArrowRight } from "lucide-react";
 import { prisma } from "@/lib/db";
 
-export default async function CoordinatorDashboardPage() {
+export default async function VolunteerDashboardPage() {
   const [pendingPickups, upcomingWindows, totalItems] = await Promise.all([
     prisma.logisticsAssignment.count({
       where: { status: "SCHEDULED" },
@@ -66,8 +66,7 @@ export default async function CoordinatorDashboardPage() {
       <div className="card">
         <h2 className="font-semibold text-teal-900">Your role</h2>
         <p className="mt-2 text-sm text-teal-600">
-          Match donors’ pickup windows with nonprofits, update assignment status, and
-          keep inventory and schedules in sync so donations reach families smoothly.
+          You coordinate donors and nonprofits and their scheduling (time and location). Match pickup windows with nonprofits, set times and locations, update status, and keep inventory in sync so donations reach families smoothly.
         </p>
         <div className="mt-4 flex flex-wrap gap-3">
           <Link href="/dashboard/coordinator/logistics" className="btn-primary">

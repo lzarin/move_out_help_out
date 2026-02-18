@@ -10,7 +10,7 @@ import type { Role } from "@/types";
 const ROLE_OPTIONS: { value: Role; label: string }[] = [
   { value: "DONOR", label: "Donor (campus / student)" },
   { value: "NONPROFIT", label: "Nonprofit" },
-  { value: "COORDINATOR", label: "Coordinator" },
+  { value: "COORDINATOR", label: "Volunteer" },
 ];
 
 function LoginForm() {
