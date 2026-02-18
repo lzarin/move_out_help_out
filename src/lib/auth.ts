@@ -60,7 +60,7 @@ export const authOptions: NextAuthOptions = {
             email: user.email,
             name: user.name,
             image: user.image,
-            role: user.role,
+            role: user.role as Role,
             organizationId: user.organizationId,
           };
         }
@@ -79,7 +79,7 @@ export const authOptions: NextAuthOptions = {
             email: newUser.email,
             name: newUser.name,
             image: newUser.image,
-            role: newUser.role,
+            role: newUser.role as Role,
             organizationId: newUser.organizationId,
           };
         }

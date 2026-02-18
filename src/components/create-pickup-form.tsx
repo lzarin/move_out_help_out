@@ -42,37 +42,37 @@ export function CreatePickupForm({ donorId }: { donorId: string | null }) {
         Create pickup window
       </button>
       {open && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-stone-900/50 p-4">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-teal-950/50 p-4">
           <div className="card w-full max-w-md">
-            <h3 className="font-semibold text-stone-900">New pickup window</h3>
+            <h3 className="font-semibold text-teal-900">New pickup window</h3>
             <form onSubmit={handleSubmit} className="mt-4 space-y-4">
               <div>
-                <label className="block text-sm font-medium text-stone-700">Start</label>
+                <label className="block text-sm font-medium text-teal-800">Start</label>
                 <input
                   type="datetime-local"
                   value={startsAt}
                   onChange={(e) => setStartsAt(e.target.value)}
                   required
-                  className="mt-1 w-full rounded-xl border border-stone-300 px-3 py-2 text-stone-900"
+                  className="mt-1 w-full rounded-xl border border-teal-200 px-3 py-2 text-teal-900"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-stone-700">End</label>
+                <label className="block text-sm font-medium text-teal-800">End</label>
                 <input
                   type="datetime-local"
                   value={endsAt}
                   onChange={(e) => setEndsAt(e.target.value)}
                   required
-                  className="mt-1 w-full rounded-xl border border-stone-300 px-3 py-2 text-stone-900"
+                  className="mt-1 w-full rounded-xl border border-teal-200 px-3 py-2 text-teal-900"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-stone-700">Notes (optional)</label>
+                <label className="block text-sm font-medium text-teal-800">Notes (optional)</label>
                 <textarea
                   value={notes}
                   onChange={(e) => setNotes(e.target.value)}
                   rows={2}
-                  className="mt-1 w-full rounded-xl border border-stone-300 px-3 py-2 text-stone-900"
+                  className="mt-1 w-full rounded-xl border border-teal-200 px-3 py-2 text-teal-900"
                 />
               </div>
               <div className="flex gap-2">

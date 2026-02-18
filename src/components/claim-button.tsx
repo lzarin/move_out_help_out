@@ -40,26 +40,26 @@ export function ClaimButton({
       <button
         type="button"
         onClick={() => setOpen(true)}
-        className="mt-2 rounded-lg bg-brand-600 px-3 py-1.5 text-sm font-medium text-white hover:bg-brand-700"
+        className="mt-2 rounded-lg bg-teal-600 px-3 py-1.5 text-sm font-semibold text-white hover:bg-teal-700"
       >
         Claim
       </button>
       {open && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-stone-900/50 p-4">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-teal-950/50 p-4">
           <div className="card w-full max-w-sm">
-            <h3 className="font-semibold text-stone-900">Claim this item</h3>
+            <h3 className="font-semibold text-teal-900">Claim this item</h3>
             <form onSubmit={handleSubmit} className="mt-4 space-y-4">
               <div>
-                <label className="block text-sm font-medium text-stone-700">Quantity</label>
+                <label className="block text-sm font-medium text-teal-800">Quantity</label>
                 <input
                   type="number"
                   min={1}
                   max={maxQuantity}
                   value={quantity}
                   onChange={(e) => setQuantity(Number(e.target.value))}
-                  className="mt-1 w-full rounded-xl border border-stone-300 px-3 py-2 text-stone-900"
+                  className="mt-1 w-full rounded-xl border border-teal-200 px-3 py-2 text-teal-900"
                 />
-                <p className="mt-1 text-xs text-stone-500">Max: {maxQuantity}</p>
+                <p className="mt-1 text-xs text-teal-600">Max: {maxQuantity}</p>
               </div>
               <div className="flex gap-2">
                 <button type="button" onClick={() => setOpen(false)} className="btn-secondary flex-1">

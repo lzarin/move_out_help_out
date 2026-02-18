@@ -59,21 +59,21 @@ export function DashboardNav({ role }: { role: Role }) {
           key={href}
           href={href}
           className={clsx(
-            "flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition",
+            "flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-semibold transition",
             pathname === href
-              ? "bg-brand-100 text-brand-800 dark:bg-brand-900/30 dark:text-brand-200"
-              : "text-stone-600 hover:bg-stone-100 hover:text-stone-900 dark:text-stone-400 dark:hover:bg-stone-800 dark:hover:text-stone-200"
+              ? "bg-teal-100 text-teal-800 dark:bg-teal-800/50 dark:text-teal-100"
+              : "text-teal-700 hover:bg-teal-50 hover:text-teal-900 dark:text-teal-300 dark:hover:bg-teal-800/50 dark:hover:text-teal-100"
           )}
         >
           <Icon className="h-5 w-5 shrink-0" />
           {label}
         </Link>
       ))}
-      <div className="my-2 border-t border-stone-200 dark:border-stone-700" />
+      <div className="my-2 border-t border-teal-200 dark:border-teal-800" />
       <button
         type="button"
         onClick={() => signOut({ callbackUrl: "/" })}
-        className="flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-left text-sm font-medium text-stone-600 hover:bg-stone-100 hover:text-stone-900 dark:text-stone-400 dark:hover:bg-stone-800 dark:hover:text-stone-200"
+        className="flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-left text-sm font-semibold text-teal-700 hover:bg-coral-50 hover:text-coral-700 dark:text-teal-300 dark:hover:bg-teal-800/50 dark:hover:text-teal-100"
       >
         <LogOut className="h-5 w-5 shrink-0" />
         Sign out

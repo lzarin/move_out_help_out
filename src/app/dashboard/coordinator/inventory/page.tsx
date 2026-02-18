@@ -9,9 +9,9 @@ export default async function CoordinatorInventoryPage() {
 
   return (
     <div className="space-y-6">
-      <h2 className="text-lg font-semibold text-stone-900">All inventory</h2>
+      <h2 className="text-lg font-semibold text-teal-900">All inventory</h2>
       {items.length === 0 ? (
-        <div className="card text-center text-stone-600">
+        <div className="card text-center text-teal-600">
           <p>No inventory listed yet.</p>
         </div>
       ) : (

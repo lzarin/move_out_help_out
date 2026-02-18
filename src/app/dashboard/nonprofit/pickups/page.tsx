@@ -20,9 +20,9 @@ export default async function NonprofitPickupsPage() {
 
   return (
     <div className="space-y-6">
-      <h2 className="text-lg font-semibold text-stone-900">Your pickups</h2>
+      <h2 className="text-lg font-semibold text-teal-900">Your pickups</h2>
       {assignments.length === 0 ? (
-        <div className="card text-center text-stone-600">
+        <div className="card text-center text-teal-600">
           <p>No pickups assigned yet.</p>
           <p className="mt-1 text-sm">
             A coordinator will assign you to a donor’s pickup window once you’ve claimed items.
@@ -33,18 +33,18 @@ export default async function NonprofitPickupsPage() {
           {assignments.map((a) => (
             <li key={a.id} className="card">
               <div className="flex items-start gap-3">
-                <div className="rounded-lg bg-brand-100 p-2 text-brand-600">
+                <div className="rounded-lg bg-teal-100 p-2 text-teal-600">
                   <Truck className="h-5 w-5" />
                 </div>
                 <div className="min-w-0 flex-1">
-                  <p className="font-medium text-stone-900">{a.donor.name}</p>
-                  <p className="text-sm text-stone-500">
+                  <p className="font-medium text-teal-900">{a.donor.name}</p>
+                  <p className="text-sm text-teal-600">
                     {format(new Date(a.pickupWindow.startsAt), "EEE, MMM d")} ·{" "}
                     {format(new Date(a.pickupWindow.startsAt), "h:mm a")} –{" "}
                     {format(new Date(a.pickupWindow.endsAt), "h:mm a")}
                   </p>
                   {a.donor.address && (
-                    <p className="mt-2 flex items-center gap-1 text-sm text-stone-600">
+                    <p className="mt-2 flex items-center gap-1 text-sm text-teal-600">
                       <MapPin className="h-4 w-4 shrink-0" />
                       {a.donor.address}
                     </p>
@@ -52,10 +52,10 @@ export default async function NonprofitPickupsPage() {
                   <span
                     className={`mt-2 inline-block rounded-full px-2 py-0.5 text-xs font-medium ${
                       a.status === "SCHEDULED"
-                        ? "bg-brand-100 text-brand-800"
+                        ? "bg-teal-100 text-teal-800"
                         : a.status === "COMPLETED"
-                          ? "bg-stone-100 text-stone-600"
-                          : "bg-warm-100 text-warm-800"
+                          ? "bg-teal-100 text-teal-600"
+                          : "bg-coral-100 text-coral-800"
                     }`}
                   >
                     {a.status.replace("_", " ")}

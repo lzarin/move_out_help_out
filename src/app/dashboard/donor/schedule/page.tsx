@@ -19,11 +19,11 @@ export default async function DonorSchedulePage() {
   return (
     <div className="space-y-6">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-        <h2 className="text-lg font-semibold text-stone-900">Pickup windows</h2>
+        <h2 className="text-lg font-semibold text-teal-900">Pickup windows</h2>
         <CreatePickupForm donorId={donorId} />
       </div>
       {windows.length === 0 ? (
-        <div className="card text-center text-stone-600">
+        <div className="card text-center text-teal-600">
           <p>No pickup windows yet.</p>
           <p className="mt-1 text-sm">
             {donorId

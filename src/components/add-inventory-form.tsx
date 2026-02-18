@@ -1,13 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import { INVENTORY_CATEGORIES } from "@/types";
+import { INVENTORY_CATEGORIES, type InventoryCategory } from "@/types";
 
 export function AddInventoryForm({ donorId }: { donorId: string | null }) {
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [title, setTitle] = useState("");
-  const [category, setCategory] = useState(INVENTORY_CATEGORIES[0]);
+  const [category, setCategory] = useState<InventoryCategory>(INVENTORY_CATEGORIES[0]);
   const [quantity, setQuantity] = useState(1);
   const [description, setDescription] = useState("");
 
@@ -44,25 +44,25 @@ export function AddInventoryForm({ donorId }: { donorId: string | null }) {
         Add item
       </button>
       {open && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-stone-900/50 p-4">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-teal-950/50 p-4">
           <div className="card w-full max-w-md">
-            <h3 className="font-semibold text-stone-900">Add inventory item</h3>
+            <h3 className="font-semibold text-teal-900">Add inventory item</h3>
             <form onSubmit={handleSubmit} className="mt-4 space-y-4">
               <div>
-                <label className="block text-sm font-medium text-stone-700">Title</label>
+                <label className="block text-sm font-medium text-teal-800">Title</label>
                 <input
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
                   required
-                  className="mt-1 w-full rounded-xl border border-stone-300 px-3 py-2 text-stone-900"
+                  className="mt-1 w-full rounded-xl border border-teal-200 px-3 py-2 text-teal-900"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-stone-700">Category</label>
+                <label className="block text-sm font-medium text-teal-800">Category</label>
                 <select
                   value={category}
-                  onChange={(e) => setCategory(e.target.value)}
-                  className="mt-1 w-full rounded-xl border border-stone-300 px-3 py-2 text-stone-900"
+                  onChange={(e) => setCategory(e.target.value as InventoryCategory)}
+                  className="mt-1 w-full rounded-xl border border-teal-200 px-3 py-2 text-teal-900"
                 >
                   {INVENTORY_CATEGORIES.map((c) => (
                     <option key={c} value={c}>
@@ -72,22 +72,22 @@ export function AddInventoryForm({ donorId }: { donorId: string | null }) {
                 </select>
               </div>
               <div>
-                <label className="block text-sm font-medium text-stone-700">Quantity</label>
+                <label className="block text-sm font-medium text-teal-800">Quantity</label>
                 <input
                   type="number"
                   min={1}
                   value={quantity}
                   onChange={(e) => setQuantity(Number(e.target.value))}
-                  className="mt-1 w-full rounded-xl border border-stone-300 px-3 py-2 text-stone-900"
+                  className="mt-1 w-full rounded-xl border border-teal-200 px-3 py-2 text-teal-900"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-stone-700">Description (optional)</label>
+                <label className="block text-sm font-medium text-teal-800">Description (optional)</label>
                 <textarea
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
                   rows={2}
-                  className="mt-1 w-full rounded-xl border border-stone-300 px-3 py-2 text-stone-900"
+                  className="mt-1 w-full rounded-xl border border-teal-200 px-3 py-2 text-teal-900"
                 />
               </div>
               <div className="flex gap-2">

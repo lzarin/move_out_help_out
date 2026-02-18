@@ -22,12 +22,12 @@ export default async function NonprofitClaimsPage() {
 
   return (
     <div className="space-y-6">
-      <h2 className="text-lg font-semibold text-stone-900">My claims</h2>
+      <h2 className="text-lg font-semibold text-teal-900">My claims</h2>
       {claims.length === 0 ? (
-        <div className="card text-center text-stone-600">
+        <div className="card text-center text-teal-600">
           <p>You haven’t claimed any items yet.</p>
           <p className="mt-1 text-sm">
-            <a href="/dashboard/nonprofit/available" className="text-brand-600 underline">
+            <a href="/dashboard/nonprofit/available" className="text-teal-600 underline">
               Browse available items
             </a>
           </p>
