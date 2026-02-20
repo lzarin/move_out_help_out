@@ -1,18 +1,30 @@
 import Link from "next/link";
 import { Package, Heart, Truck, ArrowRight } from "lucide-react";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/db";
+import { AreaSetting } from "@/components/area-setting";
+import { AREAS, type Area } from "@/types";
 
 export default async function NonprofitDashboardPage() {
-  const availableCount = await prisma.inventoryItem.count({
-    where: { status: "LISTED" },
-  });
-  const claimsCount = await prisma.claim.count();
-  const pickupsCount = await prisma.logisticsAssignment.count({
-    where: { status: { in: ["SCHEDULED", "IN_PROGRESS"] } },
-  });
+  const session = await getServerSession(authOptions);
+  const orgId = session?.user?.organizationId ?? null;
+  const org = orgId
+    ? await prisma.organization.findUnique({ where: { id: orgId }, select: { area: true } })
+    : null;
+  const area = org?.area && AREAS.includes(org.area as Area) ? (org.area as Area) : null;
+
+  const [availableCount, claimsCount, pickupsCount] = await Promise.all([
+    prisma.inventoryItem.count({ where: { status: "LISTED" } }),
+    prisma.claim.count(),
+    prisma.logisticsAssignment.count({
+      where: { status: { in: ["SCHEDULED", "IN_PROGRESS"] } },
+    }),
+  ]);
 
   return (
     <div className="space-y-8">
+      <AreaSetting initialArea={area} />
       <div className="grid gap-4 sm:grid-cols-3">
         <Link
           href="/dashboard/nonprofit/available"

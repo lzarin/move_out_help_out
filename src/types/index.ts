@@ -28,3 +28,17 @@ export const INVENTORY_CATEGORIES = [
 ] as const;
 
 export type InventoryCategory = (typeof INVENTORY_CATEGORIES)[number];
+
+/** Areas for national rollout — donors and nonprofits operate within an area. */
+export const AREAS = [
+  "Bay Area, CA",
+  "Boston, MA",
+  "Chicago, IL",
+  "Los Angeles, CA",
+  "New York Metro",
+  "Seattle, WA",
+  "Washington, DC",
+  "Other",
+] as const;
+
+export type Area = (typeof AREAS)[number];

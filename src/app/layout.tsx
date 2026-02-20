@@ -15,7 +15,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className="font-sans antialiased">
+      <body
+        className="font-sans antialiased"
+        style={{
+          // Fallback so colors show even if Tailwind CSS hasn't loaded yet
+          backgroundColor: "#faf8f5",
+          color: "#134e4a",
+        }}
+      >
         <Providers>{children}</Providers>
       </body>
     </html>

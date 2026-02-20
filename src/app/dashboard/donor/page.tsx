@@ -1,13 +1,26 @@
 import Link from "next/link";
 import { Package, Calendar, ArrowRight } from "lucide-react";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/db";
+import { AreaSetting } from "@/components/area-setting";
+import { AREAS, type Area } from "@/types";
 
 export default async function DonorDashboardPage() {
-  const itemCount = await prisma.inventoryItem.count();
-  const pickupCount = await prisma.pickupWindow.count();
+  const session = await getServerSession(authOptions);
+  const orgId = session?.user?.organizationId ?? null;
+
+  const [org, itemCount, pickupCount] = await Promise.all([
+    orgId ? prisma.organization.findUnique({ where: { id: orgId }, select: { area: true } }) : null,
+    orgId ? prisma.inventoryItem.count({ where: { donorId: orgId } }) : 0,
+    orgId ? prisma.pickupWindow.count({ where: { donorId: orgId } }) : 0,
+  ]);
+
+  const area = org?.area && AREAS.includes(org.area as Area) ? (org.area as Area) : null;
 
   return (
     <div className="space-y-8">
+      <AreaSetting initialArea={area} />
       <div className="grid gap-4 sm:grid-cols-2">
         <Link
           href="/dashboard/donor/inventory"

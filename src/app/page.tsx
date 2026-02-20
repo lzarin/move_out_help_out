@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Package, Heart, Truck } from "lucide-react";
 import { HomeHeader } from "@/components/home-header";
-import { HeroCta } from "@/components/hero-cta";
+import { HeroWithVideo } from "@/components/hero-with-video";
 import { HomeFooter } from "@/components/home-footer";
 import { ImpactStats } from "@/components/impact-stats";
 import { FAQSection } from "@/components/faq-section";
@@ -12,21 +12,8 @@ export default function HomePage() {
       <HomeHeader />
 
       <main>
-        {/* Block 1 — Hero (off-white): strong CTA above the fold */}
-        <section className="bg-offwhite px-4 py-16 md:py-24">
-          <div className="mx-auto max-w-6xl text-center">
-            <h1 className="font-display text-display-lg md:text-4xl lg:text-display-lg font-bold tracking-tight text-teal-900">
-              Turn move-out surplus into{" "}
-              <span className="text-coral-600">help for families</span>
-            </h1>
-            <p className="mx-auto mt-6 max-w-2xl text-lg md:text-xl text-teal-700/90 font-medium">
-              We connect college move-out donations to local nonprofits serving
-              families in crisis. Schedule pickups, manage inventory, and
-              coordinate logistics—all in one place.
-            </p>
-            <HeroCta />
-          </div>
-        </section>
+        {/* Block 1 — Hero with muted background video */}
+        <HeroWithVideo />
 
         {/* Block 2 — Impact stats (teal) */}
         <section className="bg-teal-700 px-4 py-14 md:py-16">

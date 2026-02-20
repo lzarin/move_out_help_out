@@ -49,41 +49,53 @@ export const authOptions: NextAuthOptions = {
       },
       async authorize(credentials) {
         if (!credentials?.email) return null;
-        // Demo: accept any email + password "demo" and assign role from query
-        const user = await prisma.user.findUnique({
-          where: { email: credentials.email },
-          include: { organization: true },
-        });
-        if (user) {
-          return {
-            id: user.id,
-            email: user.email,
-            name: user.name,
-            image: user.image,
-            role: user.role as Role,
-            organizationId: user.organizationId,
-          };
-        }
-        // Create demo user on first login (dev convenience)
-        if (process.env.NODE_ENV === "development" && credentials.password === "demo") {
-          const role = (credentials.role as Role) || "DONOR";
-          const newUser = await prisma.user.create({
-            data: {
-              email: credentials.email,
-              name: credentials.email.split("@")[0],
-              role,
-            },
+        try {
+          // Demo: accept any email + password "demo" and assign role from query
+          const user = await prisma.user.findUnique({
+            where: { email: credentials.email },
+            include: { organization: true },
           });
-          return {
-            id: newUser.id,
-            email: newUser.email,
-            name: newUser.name,
-            image: newUser.image,
-            role: newUser.role as Role,
-            organizationId: newUser.organizationId,
-          };
+          if (user) {
+            return {
+              id: user.id,
+              email: user.email,
+              name: user.name,
+              image: user.image,
+              role: user.role as Role,
+              organizationId: user.organizationId,
+            };
+          }
+          // Create demo user on first login (dev convenience)
+          if (process.env.NODE_ENV === "development" && credentials.password === "demo") {
+            const role = (credentials.role as Role) || "DONOR";
+            const newUser = await prisma.user.create({
+              data: {
+                email: credentials.email,
+                name: credentials.email.split("@")[0],
+                role,
+              },
+            });
+            return {
+              id: newUser.id,
+              email: newUser.email,
+              name: newUser.name,
+              image: newUser.image,
+              role: newUser.role as Role,
+              organizationId: newUser.organizationId,
+            };
+          }
+          return null;
+        } catch (err) {
+          console.error("[auth] Database error during sign-in:", err);
+          const url = process.env.DATABASE_URL ?? "";
+          if (url.startsWith("file:") && process.env.NODE_ENV === "development") {
+            throw new Error(
+              "Database is set to SQLite (file:...) but the app uses PostgreSQL. " +
+              "Set DATABASE_URL in .env to a Postgres URL (e.g. from Neon or Railway). See DEPLOY-STEPS.md."
+            );
+          }
+          throw err;
         }
-        return null;
       },
     }),
   ],

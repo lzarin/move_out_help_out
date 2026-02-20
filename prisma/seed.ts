@@ -5,7 +5,7 @@ const prisma = new PrismaClient();
 async function main() {
   const campus = await prisma.organization.upsert({
     where: { slug: "campus-demo" },
-    update: {},
+    update: { area: "Bay Area, CA" },
     create: {
       type: "CAMPUS",
       name: "Demo University",
@@ -13,12 +13,13 @@ async function main() {
       description: "Sample campus for move-out donations",
       address: "123 College Ave",
       contactEmail: "donations@demo.edu",
+      area: "Bay Area, CA",
     },
   });
 
   const nonprofit = await prisma.organization.upsert({
     where: { slug: "nonprofit-demo" },
-    update: {},
+    update: { area: "Bay Area, CA" },
     create: {
       type: "NONPROFIT",
       name: "Community Family Services",
@@ -26,6 +27,7 @@ async function main() {
       description: "Serving families in crisis",
       address: "456 Hope St",
       contactEmail: "intake@communityfamily.org",
+      area: "Bay Area, CA",
     },
   });
 

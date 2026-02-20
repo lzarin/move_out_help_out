@@ -16,11 +16,15 @@ async function handler(
     );
   }
   try {
-    return await nextAuth(req, context);
+    // Next.js 15: params is a Promise; resolve so NextAuth receives a plain context
+    const params = await context.params;
+    return await nextAuth(req, { params });
   } catch (e) {
+    const message = e instanceof Error ? e.message : "Authentication error";
+    const isDev = process.env.NODE_ENV === "development";
     console.error("[next-auth] Error:", e);
     return NextResponse.json(
-      { error: e instanceof Error ? e.message : "Authentication error" },
+      { error: isDev ? message : "Authentication error" },
       { status: 500 }
     );
   }
