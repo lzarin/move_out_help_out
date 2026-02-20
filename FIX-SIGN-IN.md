@@ -1,4 +1,4 @@
-# Fix sign-in (Internal Server Error) — step by step on Mac
+than# Fix sign-in (Internal Server Error) — step by step on Mac
 
 Do these steps in order. Use Cursor and the Terminal on your Mac.
 
