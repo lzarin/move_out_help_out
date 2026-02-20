@@ -11,6 +11,7 @@ export function HeroWithVideo() {
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
+    video.playbackRate = 0.75; // slightly slower for a calm, slow-motion feel
     video.play().catch(() => {});
   }, []);
 
@@ -25,7 +26,6 @@ export function HeroWithVideo() {
         loop
         playsInline
         className="absolute inset-0 h-full w-full object-cover"
-        style={{ playbackRate: 0.75 }}
         aria-hidden
       />
       {/* Overlay to mute vibrance and keep text readable */}
