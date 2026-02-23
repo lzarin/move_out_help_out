@@ -90,14 +90,9 @@ export const authOptions: NextAuthOptions = {
           return null;
         } catch (err) {
           console.error("[auth] Database error during sign-in:", err);
-          const url = process.env.DATABASE_URL ?? "";
-          if (url.startsWith("file:") && process.env.NODE_ENV === "development") {
-            throw new Error(
-              "Database is set to SQLite (file:...) but the app uses PostgreSQL. " +
-              "Set DATABASE_URL in .env to a Postgres URL (e.g. from Neon or Railway). See DEPLOY-STEPS.md."
-            );
-          }
-          throw err;
+          throw new Error(
+            "Database error. Make sure DATABASE_URL in .env is correct and you ran: npx prisma db push && npx tsx prisma/seed.ts"
+          );
         }
       },
     }),

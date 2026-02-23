@@ -34,7 +34,17 @@ function LoginForm() {
         redirect: false,
       });
       if (res?.error) {
-        setError("Sign in failed. Use a demo email and password 'demo'. See options below.");
+        const msg = typeof res.error === "string" ? res.error : "Sign in failed.";
+        setError(
+          msg === "CredentialsSignin"
+            ? "Wrong email or password. Use one of the demo emails below and password demo."
+            : msg
+        );
+        setLoading(false);
+        return;
+      }
+      if (!res?.ok) {
+        setError("Sign in failed. Check the terminal running npm run dev for errors.");
         setLoading(false);
         return;
       }
