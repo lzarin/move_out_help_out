@@ -6,7 +6,7 @@ A production-ready web platform that connects **college move-out surplus** to **
 
 - **Donor** — Campuses or students post surplus items and create pickup windows.
 - **Nonprofit** — Browse and claim inventory, manage pickups.
-- **Coordinator** — Match donors to nonprofits, manage logistics and schedule.
+- **Volunteer** — Pick up, deliver, sort items. Manage logistics and schedule.
 
 ## Tech stack
 
