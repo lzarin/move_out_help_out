@@ -3,7 +3,11 @@
 import { useRef, useEffect } from "react";
 import { HeroCta } from "./hero-cta";
 
-const HERO_VIDEO_SRC = "/hero-bg.mp4";
+  const HERO_VIDEO_SOURCES = [
+    "/hero-bg.mp4",
+    "/hero-bg-2.mp4",
+    "/hero-bg-3.mp4",
+  ];
 
 export function HeroWithVideo() {
   const videoRef = useRef<HTMLVideoElement>(null);
