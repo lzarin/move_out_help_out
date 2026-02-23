@@ -1,6 +1,6 @@
 # Move Out Help Out
 
-A production-ready web platform that connects **college move-out surplus** to **local nonprofits** serving families in crisis. Multi-role app with scheduling, logistics coordination, and inventory management.
+A production-ready web platform that connects **college move-out surplus** to **local nonprofits** serving families in crisis. Multi-role app with scheduling, logistics coordination, and inventory management. College students often have surplus goods - half full Windex bottles, canned food, linen, mattress toppers, dishware, and more. There is no college-dedicated donation service that connects these college move-out surpluses to families in need, particularly foster kids who turn 18 and move out and domestic violence survivors who are starting anew. 
 
 ## Roles
 
@@ -101,7 +101,7 @@ MIT.
 **At a glance:**  
 - **Live site:** https://www.moveouthelpout.com (deployed on Railway; custom domain via GoDaddy).  
 - **Demo logins:** Use **password `demo`** with donor@moveouthelpout.org, nonprofit@moveouthelpout.org, or coordinator@moveouthelpout.org (choose role on login page).  
-- **Local run:** `npm install` → `npm run db:push` → `npm run db:seed` → `npm run dev` (see “How to run it locally” below for `.env`).
+- **Local run:** `npm install` → `npm run db:push` → `npm run db:seed` → `npm run dev` (see “How to run it locally” below for `.env`). The local host is http://localhost:3002/
 
 ---
 
