@@ -28,13 +28,13 @@ function LoginForm() {
     setLoading(true);
     try {
       const res = await signIn("credentials", {
-        email: email.trim() || "demo@moveouthelpout.org",
+        email: email.trim().toLowerCase() || "donor@moveouthelpout.org",
         password: password || "demo",
         role,
         redirect: false,
       });
       if (res?.error) {
-        setError("Sign in failed. Use password 'demo' for demo.");
+        setError("Sign in failed. Use a demo email and password 'demo'. See options below.");
         setLoading(false);
         return;
       }
@@ -67,8 +67,13 @@ function LoginForm() {
         <div className="card shadow-lg shadow-teal-950/10">
           <h1 className="text-2xl font-bold text-teal-900">Sign in</h1>
           <p className="mt-2 text-sm font-medium text-teal-700">
-            Use any email and password <strong className="text-coral-600">demo</strong> to try the app.
+            Use password <strong className="text-coral-600">demo</strong> with one of these emails:
           </p>
+          <ul className="mt-1 text-xs font-medium text-teal-600 list-disc list-inside">
+            <li>donor@moveouthelpout.org</li>
+            <li>nonprofit@moveouthelpout.org</li>
+            <li>coordinator@moveouthelpout.org</li>
+          </ul>
           <form onSubmit={handleSubmit} className="mt-6 space-y-4">
             <div>
               <label htmlFor="email" className="block text-sm font-semibold text-teal-800">
@@ -79,7 +84,7 @@ function LoginForm() {
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="you@example.com"
+                placeholder="donor@moveouthelpout.org"
                 className="mt-1.5 w-full rounded-xl border-2 border-teal-200 px-3 py-2.5 text-teal-900 placeholder:text-teal-400 focus:border-teal-500 focus:outline-none focus:ring-2 focus:ring-teal-400/50"
               />
             </div>

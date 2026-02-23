@@ -6,8 +6,8 @@ import { HeroCta } from "./hero-cta";
 // Primary file: use hero-bg.mp4 (dash) in public/. Add more paths for a rotating sequence.
 const HERO_VIDEO_SOURCES = [
   "/hero-bg.mp4",
-  // "/hero-bg-2.mp4",
-  // "/hero-bg-3.mp4",
+  "/hero-bg-2.mp4",
+  "/hero-bg-3.mp4",
 ];
 
 export function HeroWithVideo() {
@@ -27,6 +27,14 @@ export function HeroWithVideo() {
     setCurrentIndex((i) => i + 1);
   };
 
+  const handleCanPlay = () => {
+    const video = videoRef.current;
+    if (video) {
+      video.playbackRate = 0.75;
+      video.play().catch(() => {});
+    }
+  };
+
   return (
     <section className="relative min-h-[420px] overflow-hidden bg-offwhite md:min-h-[480px]">
       {/* Background video: muted, loop/sequence, slow-motion feel via playbackRate */}
@@ -38,13 +46,15 @@ export function HeroWithVideo() {
         muted
         loop={sources.length === 1}
         playsInline
+        preload="auto"
+        onCanPlay={handleCanPlay}
         onEnded={sources.length > 1 ? goToNext : undefined}
         className="absolute inset-0 h-full w-full object-cover"
         aria-hidden
       />
       {/* Overlay to mute vibrance and keep text readable */}
       <div
-        className="absolute inset-0 bg-offwhite/85"
+        className="absolute inset-0 bg-offwhite/75"
         aria-hidden
       />
       {/* Content on top */}

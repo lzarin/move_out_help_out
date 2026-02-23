@@ -49,13 +49,16 @@ export const authOptions: NextAuthOptions = {
       },
       async authorize(credentials) {
         if (!credentials?.email) return null;
+        const email = credentials.email.trim().toLowerCase();
+        const password = credentials.password ?? "";
         try {
-          // Demo: accept any email + password "demo" and assign role from query
+          // Demo: only accept password "demo"; look up by email or create in dev
           const user = await prisma.user.findUnique({
-            where: { email: credentials.email },
+            where: { email },
             include: { organization: true },
           });
           if (user) {
+            if (password !== "demo") return null;
             return {
               id: user.id,
               email: user.email,
@@ -66,12 +69,12 @@ export const authOptions: NextAuthOptions = {
             };
           }
           // Create demo user on first login (dev convenience)
-          if (process.env.NODE_ENV === "development" && credentials.password === "demo") {
+          if (process.env.NODE_ENV === "development" && password === "demo") {
             const role = (credentials.role as Role) || "DONOR";
             const newUser = await prisma.user.create({
               data: {
-                email: credentials.email,
-                name: credentials.email.split("@")[0],
+                email,
+                name: email.split("@")[0],
                 role,
               },
             });
