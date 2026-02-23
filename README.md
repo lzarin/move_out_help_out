@@ -98,9 +98,7 @@ MIT.
 
 ## Phil Notes
 
-*(Everything your professor should know to grade this project.)*
-
-**Grading at a glance:**  
+**At a glance:**  
 - **Live site:** https://www.moveouthelpout.com (deployed on Railway; custom domain via GoDaddy).  
 - **Demo logins:** Use **password `demo`** with donor@moveouthelpout.org, nonprofit@moveouthelpout.org, or coordinator@moveouthelpout.org (choose role on login page).  
 - **Local run:** `npm install` → `npm run db:push` → `npm run db:seed` → `npm run dev` (see “How to run it locally” below for `.env`).
@@ -109,9 +107,9 @@ MIT.
 
 ### What this project is
 
-**Move Out Help Out** is a full-stack web application that connects college move-out surplus (donors) to local nonprofits serving families in crisis. It supports three roles—Donor, Nonprofit, and Coordinator—with role-based dashboards, inventory management, claims, pickup windows, and logistics assignment. The app is deployed to production (Railway) with a custom domain.
+**Move Out Help Out** is a full-stack web application that connects college move-out surplus to local nonprofits serving families in crisis. It supports three roles—Donor, Nonprofit, and Coordinator—with role-based dashboards, inventory management, claims, pickup windows, and logistics assignment. The app is deployed to production (Railway) with a custom domain.
 
-### Tech stack (for grading)
+### Tech stack
 
 | Layer | Technology |
 |-------|------------|
@@ -124,7 +122,7 @@ MIT.
 | Validation | Zod (API routes) |
 | Hosting | Railway (app + PostgreSQL); custom domain via GoDaddy DNS |
 
-### How to run it locally (for grading)
+### How to run it locally 
 
 1. **Clone the repo** (or download and open in the project directory.)
 2. **Install:** `npm install`
@@ -135,7 +133,7 @@ MIT.
 4. **Database:** `npm run db:push` then `npm run db:seed`
 5. **Run:** `npm run dev` → open http://localhost:3000
 
-### Demo sign-in (for grading)
+### Demo sign-in 
 
 **Password for all demo accounts:** `demo`
 
@@ -165,7 +163,7 @@ Donors and nonprofits can set their **area** (e.g. “Bay Area, CA”) on the da
 - **UI/UX:** Responsive layout, Tailwind-based design, hero section with optional background video (`public/hero-bg.mp4`), role-specific nav, forms with validation and feedback.
 - **Deployment:** Build succeeds (`prisma generate && next build`); deployed on Railway with PostgreSQL; custom domain connected; env vars documented (see `PUSH-TO-PRODUCTION.md`, `CONNECT-DOMAIN.md`).
 
-### Where to look in the codebase (for grading)
+### Where to look in the codebase 
 
 - **Auth & session:** `src/lib/auth.ts` (NextAuth config, credentials, callbacks), `src/app/api/auth/[...nextauth]/route.ts`, `src/app/login/page.tsx`, `src/lib/auth-utils.ts` (role checks).
 - **Role-based routing & layout:** `src/app/dashboard/page.tsx` (redirect by role), `src/app/dashboard/[role]/layout.tsx` (or per-role layouts), `src/components/dashboard-nav.tsx`, `src/middleware.ts`.
@@ -176,7 +174,7 @@ Donors and nonprofits can set their **area** (e.g. “Bay Area, CA”) on the da
 - **Database:** `prisma/schema.prisma`, `prisma/seed.ts`, `src/lib/db.ts`.
 - **Home page & hero:** `src/app/page.tsx`, `src/components/hero-with-video.tsx`, `src/components/hero-cta.tsx`.
 
-### Known limitations / scope (for fair grading)
+### Known limitations / scope 
 
 - **Auth:** Credentials-only; password is a single shared “demo” for local/dev; no email verification or password reset. Production would use a proper credentials store (e.g. hashed passwords) or OAuth.
 - **Images:** Upload and image URLs are supported for inventory; storage is configurable (e.g. local or cloud); no in-app image processing beyond display.
