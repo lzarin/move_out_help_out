@@ -1,30 +1,44 @@
 "use client";
 
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import { HeroCta } from "./hero-cta";
 
-const HERO_VIDEO_SRC = "/hero-bg.mp4";
+// Primary file: use hero-bg.mp4 (dash) in public/. Add more paths for a rotating sequence.
+const HERO_VIDEO_SOURCES = [
+  "/hero-bg.mp4",
+  // "/hero-bg-2.mp4",
+  // "/hero-bg-3.mp4",
+];
 
 export function HeroWithVideo() {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const sources = HERO_VIDEO_SOURCES.length > 0 ? HERO_VIDEO_SOURCES : ["/hero-bg.mp4"];
+  const currentSrc = sources[currentIndex % sources.length];
 
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
     video.playbackRate = 0.75; // slightly slower for a calm, slow-motion feel
     video.play().catch(() => {});
-  }, []);
+  }, [currentSrc]);
+
+  const goToNext = () => {
+    setCurrentIndex((i) => i + 1);
+  };
 
   return (
     <section className="relative min-h-[420px] overflow-hidden bg-offwhite md:min-h-[480px]">
-      {/* Background video: muted, loop, slow-motion feel via playbackRate */}
+      {/* Background video: muted, loop/sequence, slow-motion feel via playbackRate */}
       <video
         ref={videoRef}
-        src={HERO_VIDEO_SRC}
+        key={currentSrc}
+        src={currentSrc}
         autoPlay
         muted
-        loop
+        loop={sources.length === 1}
         playsInline
+        onEnded={sources.length > 1 ? goToNext : undefined}
         className="absolute inset-0 h-full w-full object-cover"
         aria-hidden
       />
