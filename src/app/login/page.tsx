@@ -24,11 +24,13 @@ function LoginForm() {
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+    e.stopPropagation();
     setError("");
     setLoading(true);
+    const emailToUse = email.trim().toLowerCase() || "donor@moveouthelpout.org";
     try {
       const res = await signIn("credentials", {
-        email: email.trim().toLowerCase() || "donor@moveouthelpout.org",
+        email: emailToUse,
         password: password || "demo",
         role,
         redirect: false,
@@ -37,7 +39,7 @@ function LoginForm() {
         const msg = typeof res.error === "string" ? res.error : "Sign in failed.";
         setError(
           msg === "CredentialsSignin"
-            ? "Wrong email or password. Use one of the demo emails below and password demo."
+            ? "Wrong email or password. Use one of the demo emails below and password demo. On the live site, demo accounts must be set up first (see README)."
             : msg
         );
         setLoading(false);
@@ -59,6 +61,7 @@ function LoginForm() {
       setError("Something went wrong.");
       setLoading(false);
     }
+    return false;
   }
 
   return (
@@ -84,7 +87,13 @@ function LoginForm() {
             <li>nonprofit@moveouthelpout.org</li>
             <li>coordinator@moveouthelpout.org</li>
           </ul>
-          <form onSubmit={handleSubmit} className="mt-6 space-y-4">
+          <form
+            onSubmit={handleSubmit}
+            action="#"
+            method="post"
+            className="mt-6 space-y-4"
+            noValidate
+          >
             <div>
               <label htmlFor="email" className="block text-sm font-semibold text-teal-800">
                 Email

@@ -114,10 +114,60 @@ If it still says “Sign in failed”:
 
 ---
 
-## If you’re testing the **live site** (not localhost)
+## Part C: Fix sign-in on the **live site** (www.moveouthelpout.com)
 
-- **Videos:** The live site will only show the hero videos if the same three files (**hero-bg.mp4**, **hero-bg-2.mp4**, **hero-bg-3.mp4**) are in the **public** folder in the code you deploy (e.g. on Railway). Push your latest code (including those files) and redeploy.  
-- **Sign-in:** The **production** database must also have the demo users. You need to run the seed **once** against the production database (using the production **DATABASE_URL**). How you do that depends on your host (e.g. Railway run command or a one-off script). After the seed runs, use the same three emails and password **demo** on the live site.
+If the email field clears when you click Sign in and nothing happens (or you get sent back to the login page), it’s usually one of these:
+
+1. **The form was reloading the page** — The login form was updated so it no longer does a full-page submit; the email and error message should stay visible. Deploy the latest code (see “Sync and deploy” below).
+2. **Demo users don’t exist in production** — The live site uses a **different database** than your laptop. That database must be seeded once with the demo accounts.
+3. **NEXTAUTH_URL is wrong** — On the host (e.g. Railway), `NEXTAUTH_URL` must be exactly your live URL, e.g. `https://www.moveouthelpout.com`, and `NEXTAUTH_SECRET` must be set.
+
+### Step C1: Sync Git and deploy
+
+1. In Cursor, click **Sync Changes** (or run `git pull origin main --no-rebase`, then fix any conflicts, then `git push origin main`) so the live site gets the latest login form and auth code.
+2. Redeploy the app on Railway (or your host) so the new code is live.
+
+### Step C2: Set environment variables on the host
+
+1. In **Railway** (or your host), open your project → **Variables** (or **Environment**).
+2. Ensure these are set:
+   - **NEXTAUTH_URL** = `https://www.moveouthelpout.com` (use your exact live URL, with https).
+   - **NEXTAUTH_SECRET** = any long random string (e.g. run `openssl rand -base64 32` locally and paste the result).
+   - **DATABASE_URL** = your **production** PostgreSQL connection string (from Railway Postgres or your DB provider).
+3. Save and redeploy if the host doesn’t auto-redeploy.
+
+### Step C3: Seed the production database (one-time)
+
+The live site needs the three demo users in **its** database. From your **local** machine, run the seed against the **production** database:
+
+1. **Temporarily** point your local `.env` at production (or use a separate `.env.production` that’s not committed):
+   - Set **DATABASE_URL** to the **same** PostgreSQL URL you use in Railway for the app.
+2. In the terminal:
+   ```bash
+   cd /Users/liorazarin/Desktop/move_out_help_out
+   npx prisma db push
+   npm run db:seed
+   ```
+3. **Restore** your local **DATABASE_URL** in `.env` back to `file:./dev.db` (or your usual local DB) so you don’t overwrite local data.
+
+After this, the live site’s database will have donor@moveouthelpout.org, nonprofit@moveouthelpout.org, and coordinator@moveouthelpout.org with password **demo**.
+
+### Step C4: Try sign-in on the live site again
+
+1. Open https://www.moveouthelpout.com/login (or your live URL).
+2. Email: **donor@moveouthelpout.org** (copy–paste).
+3. Password: **demo**.
+4. Sign in as: **Donor**.
+5. Click **Sign in**.
+
+If it still fails, you should now see an error message under the button instead of the email clearing. Use that message to debug (e.g. “Wrong email or password” = DB not seeded or wrong URL; “Database error” = DATABASE_URL or connectivity).
+
+---
+
+## If you’re testing the **live site** (not localhost) — short version
+
+- **Videos:** Deploy code that includes **hero-bg.mp4**, **hero-bg-2.mp4**, **hero-bg-3.mp4** in **public/**.
+- **Sign-in:** Set **NEXTAUTH_URL** and **NEXTAUTH_SECRET** on the host; run the seed **once** against the production **DATABASE_URL**; use the three demo emails and password **demo**.
 
 ---
 
