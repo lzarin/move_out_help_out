@@ -100,6 +100,13 @@ MIT.
 
 *(Everything your professor should know to grade this project.)*
 
+**Grading at a glance:**  
+- **Live site:** https://www.moveouthelpout.com (deployed on Railway; custom domain via GoDaddy).  
+- **Demo logins:** Use **password `demo`** with donor@moveouthelpout.org, nonprofit@moveouthelpout.org, or coordinator@moveouthelpout.org (choose role on login page).  
+- **Local run:** `npm install` → `npm run db:push` → `npm run db:seed` → `npm run dev` (see “How to run it locally” below for `.env`).
+
+---
+
 ### What this project is
 
 **Move Out Help Out** is a full-stack web application that connects college move-out surplus (donors) to local nonprofits serving families in crisis. It supports three roles—Donor, Nonprofit, and Coordinator—with role-based dashboards, inventory management, claims, pickup windows, and logistics assignment. The app is deployed to production (Railway) with a custom domain.
@@ -142,9 +149,9 @@ Donors and nonprofits can set their **area** (e.g. “Bay Area, CA”) on the da
 
 ### Production / live site
 
-- **Live URL:** https://www.moveouthelpout.com (or the root domain if configured).
+- **Live URL:** https://www.moveouthelpout.com (production site is live and working).
 - **Host:** Railway (single platform for app + PostgreSQL).
-- **Domain:** GoDaddy DNS (CNAME for www, optional TXT for Railway verification). `NEXTAUTH_URL` in Railway is set to the production URL so sign-in and redirects work.
+- **Domain:** GoDaddy DNS — CNAME for `www` → Railway; TXT `_railway-verify.www` for verification. Root domain (moveouthelpout.com without www) can be forwarded to www in GoDaddy if desired. `NEXTAUTH_URL` in Railway is set to the production URL so sign-in and redirects work.
 
 ### Features implemented (grading checklist)
 
